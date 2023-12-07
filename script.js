@@ -42,3 +42,24 @@ const createDays = () => {
 };
 
 createDays();
+
+// 02 - Implemente uma função que muda a cor de fundo dos dias que possuem a classe "holiday".
+
+// 03 - Implemente uma função que modifica o texto exibido nos dias que são sextas-feiras
+document.addEventListener('DOMContentLoaded', () => {
+  const fridayDays = document.querySelectorAll('.friday');
+  const originalFridayTexts = Array.from(fridayDays).map(day => day.innerText);
+
+  document.getElementById('btn-friday').addEventListener('click', () => {
+    fridayDays.forEach((day, index) => {
+      const originalText = originalFridayTexts[index];
+      day.innerText = (day.innerText === 'É sexta') ? originalText : 'É sexta';
+    });
+  });
+});
+
+// 04 - Implemente duas funções que criem um efeito de "zoom"
+
+// 05 - Implemente uma função que seleciona uma tarefa e atribua a cor da tarefa ao dia do calendário
+
+// 06 - Adicionando compromissos a seu calendário
