@@ -50,18 +50,22 @@ document.addEventListener('DOMContentLoaded', () => {
   btnHoliday.addEventListener('click', () => {
     const holidayDays = document.querySelectorAll('.holiday');
 
-    holidayDays.forEach(day => {
+    for (const day of holidayDays) {
       const currentColor = day.style.backgroundColor;
       const newColor = (currentColor === 'red') ? 'rgb(238,238,238)' : 'red';
       day.style.backgroundColor = newColor;
-    });
+    }
   });
 });
 
 // 03 - Implemente uma função que modifica o texto exibido nos dias que são sextas-feiras
 document.addEventListener('DOMContentLoaded', () => {
   const fridayDays = document.querySelectorAll('.friday');
-  const originalFridayTexts = Array.from(fridayDays).map(day => day.innerText);
+  const originalFridayTexts = [];
+
+  for (const day of fridayDays) {
+    originalFridayTexts.push(day.innerText);
+  }
 
   document.getElementById('btn-friday').addEventListener('click', () => {
     fridayDays.forEach((day, index) => {
