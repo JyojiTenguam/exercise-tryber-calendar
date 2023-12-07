@@ -76,7 +76,20 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 // 04 - Implemente duas funções que criem um efeito de "zoom"
+document.addEventListener('DOMContentLoaded', () => {
+  const daysList = document.getElementById('days');
+  const dayItems = daysList.querySelectorAll('.day');
 
+  dayItems.forEach((day) => {
+    day.addEventListener('mouseenter', () => {
+      day.style.cssText = 'font-size: 30px';
+    });
+
+    day.addEventListener('mouseleave', () => {
+      day.style.cssText = 'font-size: 20px';
+    });
+  });
+});
 // 05 - Implemente uma função que seleciona uma tarefa e atribua a cor da tarefa ao dia do calendário
 
 // 06 - Adicionando compromissos a seu calendário
