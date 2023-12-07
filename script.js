@@ -44,6 +44,19 @@ const createDays = () => {
 createDays();
 
 // 02 - Implemente uma função que muda a cor de fundo dos dias que possuem a classe "holiday".
+document.addEventListener('DOMContentLoaded', () => {
+  const btnHoliday = document.getElementById('btn-holiday');
+
+  btnHoliday.addEventListener('click', () => {
+    const holidayDays = document.querySelectorAll('.holiday');
+
+    holidayDays.forEach(day => {
+      const currentColor = day.style.backgroundColor;
+      const newColor = (currentColor === 'red') ? 'rgb(238,238,238)' : 'red';
+      day.style.backgroundColor = newColor;
+    });
+  });
+});
 
 // 03 - Implemente uma função que modifica o texto exibido nos dias que são sextas-feiras
 document.addEventListener('DOMContentLoaded', () => {
