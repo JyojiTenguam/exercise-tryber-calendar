@@ -125,3 +125,67 @@ dayItems.forEach((day) => {
 });
 
 // 06 - Adicionando compromissos a seu calendário
+const addButton = document.querySelector('#btn-add');
+const taskListParent = document.querySelector('#task-list');
+const textArea = document.querySelector('#task-input');
+
+// Função para gerar uma cor aleatória (pode ser substituída pela lógica de obtenção de cor apropriada)
+function getRandomColor() {
+  const letters = '0123456789ABCDEF';
+  let color = '#';
+  for (let index = 0; index < 6; index += 1) {
+    color += letters[Math.floor(Math.random() * 16)];
+  }
+  return color;
+}
+
+addButton.addEventListener('click', () => {
+  if (textArea.value === '') {
+    return alert('A área de texto está vazia!');
+  }
+
+  const taskList = document.createElement('li');
+  taskList.textContent = textArea.value;
+
+  // Adiciona a lógica de seleção de tarefa ao clicar em um item da lista
+  taskList.addEventListener('click', () => {
+    tasksDiv.forEach((task) => {
+      task.classList.remove('selected');
+    });
+
+    taskColor = getRandomColor(); // Ou use a lógica adequada para obter a cor da tarefa
+    tasksDiv.forEach((task) => {
+      task.style.backgroundColor = taskColor;
+    });
+  });
+
+  taskListParent.appendChild(taskList);
+});
+
+textArea.addEventListener('keydown', (event) => {
+  const { key: enter } = event;
+
+  if (textArea.value === '') {
+    return alert('A área de texto está vazia!');
+  }
+
+  if (enter === 'Enter') {
+    const taskList = document.createElement('li');
+    taskList.textContent = textArea.value;
+
+    // Adiciona a lógica de seleção de tarefa ao clicar em um item da lista
+    // eslint-disable-next-line sonarjs/no-identical-functions
+    taskList.addEventListener('click', () => {
+      tasksDiv.forEach((task) => {
+        task.classList.remove('selected');
+      });
+
+      taskColor = getRandomColor(); // Ou use a lógica adequada para obter a cor da tarefa
+      tasksDiv.forEach((task) => {
+        task.style.backgroundColor = taskColor;
+      });
+    });
+
+    taskListParent.appendChild(taskList);
+  }
+});
