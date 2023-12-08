@@ -13,7 +13,8 @@ const createDaysOfTheWeek = () => {
 
 createDaysOfTheWeek();
 
-const decemberDaysList = [29, 30, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31];
+const decemberDaysList = [29, 30, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13,
+  14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31];
 
 // Escreva seu código abaixo.
 
@@ -22,23 +23,21 @@ const decemberDaysList = [29, 30, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14,
 const createDays = () => {
   const daysList = document.querySelector('#days');
 
-  for (let index = 0; index < decemberDaysList.length; index += 1) {
-    const day = decemberDaysList[index];
+  const specialDays = {
+    24: ['holiday'],
+    31: ['holiday'],
+    4: ['friday'],
+    11: ['friday'],
+    18: ['friday'],
+    25: ['holiday', 'friday'],
+  };
+
+  decemberDaysList.forEach((day) => {
     const dayOfDecember = document.createElement('li');
-    dayOfDecember.classList.add('day');
-
-    if (day === 24 || day === 31) {
-      dayOfDecember.classList.add('holiday');
-    } else if (day === 4 || day === 11 || day === 18) {
-      dayOfDecember.classList.add('friday');
-    } else if (day === 25) {
-      dayOfDecember.classList.add('holiday');
-      dayOfDecember.classList.add('friday');
-    }
-
+    dayOfDecember.classList.add('day', ...(specialDays[day] || []));
     dayOfDecember.innerText = day;
     daysList.appendChild(dayOfDecember);
-  }
+  });
 };
 
 createDays();
@@ -76,20 +75,18 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 // 04 - Implemente duas funções que criem um efeito de "zoom"
-document.addEventListener('DOMContentLoaded', () => {
-  const daysList = document.getElementById('days');
-  const dayItems = daysList.querySelectorAll('.day');
+const dayItems = document.querySelectorAll('.day');
 
-  dayItems.forEach((day) => {
-    day.addEventListener('mouseenter', () => {
-      day.style.cssText = 'font-size: 30px';
-    });
+dayItems.forEach((day) => {
+  day.addEventListener('mouseenter', (event) => {
+    event.target.style.fontSize = '30px';
+  });
 
-    day.addEventListener('mouseleave', () => {
-      day.style.cssText = 'font-size: 20px';
-    });
+  day.addEventListener('mouseleave', (event) => {
+    event.target.style.fontSize = '20px';
   });
 });
+
 // 05 - Implemente uma função que seleciona uma tarefa e atribua a cor da tarefa ao dia do calendário
 
 // 06 - Adicionando compromissos a seu calendário
