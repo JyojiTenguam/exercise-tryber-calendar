@@ -88,5 +88,40 @@ dayItems.forEach((day) => {
 });
 
 // 05 - Implemente uma função que seleciona uma tarefa e atribua a cor da tarefa ao dia do calendário
+const tasksDiv = document.querySelectorAll('.task');
+
+let taskColor;
+
+tasksDiv.forEach((task) => {
+  task.addEventListener('click', (event) => {
+    if (task.classList.contains('selected')) {
+      task.classList.remove('selected');
+      taskColor = 'rgb(119, 119, 119)';
+    } else {
+      tasksDiv.forEach((t) => {
+        t.classList.remove('selected');
+      });
+
+      task.classList.add('selected');
+      taskColor = event.target.style.backgroundColor;
+    }
+  });
+});
+
+dayItems.forEach((day) => {
+  day.addEventListener('click', () => {
+    if (day.classList.contains('selectedDay')) {
+      day.classList.remove('selectedDay');
+      day.style.color = 'rgb(119, 119, 119)';
+    } else {
+      dayItems.forEach((d) => {
+        d.classList.remove('selectedDay');
+      });
+
+      day.classList.add('selectedDay');
+      day.style.color = taskColor;
+    }
+  });
+});
 
 // 06 - Adicionando compromissos a seu calendário
